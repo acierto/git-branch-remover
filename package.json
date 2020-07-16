@@ -16,6 +16,10 @@
   "bugs": {
     "url": "https://github.com/acierto/git-branch-remover/issues"
   },
+  "bin": {
+    "xl-git-branch-remover": "./bin/global.js"
+  },
+  "preferGlobal": true,
   "homepage": "https://github.com/acierto/git-branch-remover#readme",
   "devDependencies": {
     "@types/node": "^14.0.14",
