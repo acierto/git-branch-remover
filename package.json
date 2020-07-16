@@ -1,6 +1,6 @@
 {
   "name": "xl-git-branch-remover",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Remove branches by specific rules",
   "main": "dist/index.js",
   "scripts": {
