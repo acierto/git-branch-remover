@@ -1,6 +1,7 @@
 import {exec} from 'child_process';
 
-const TIMEOUT = 30000;
+const TIMEOUT = 5000;
+const RETENTION_IN_DAYS = 7;
 
 const getCurrentDayOfYear = () => {
     const now: any = new Date();
@@ -44,7 +45,8 @@ const getAllBranchesRelease = () => new Promise<string[]>((resolve, reject) => {
     const branchNames: string[] = await getAllBranchesRelease();
     const current = getCurrentDayOfYear();
 
-    const outdatedBranches = branchNames.filter(branchName => current - getBranchDayOfYear(branchName) > 7);
+    const outdatedBranches = branchNames.filter(branchName =>
+        current - getBranchDayOfYear(branchName) > RETENTION_IN_DAYS);
 
     const commands = outdatedBranches.map(branchName =>
         `git push origin --delete ${branchName} || echo branch '${branchName}' does not exist`);
