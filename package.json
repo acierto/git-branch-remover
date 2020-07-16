@@ -1,11 +1,11 @@
 {
   "name": "xl-git-branch-remover",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "description": "Remove branches by specific rules",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "publish": "tsc && npm publish",
-    "start": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

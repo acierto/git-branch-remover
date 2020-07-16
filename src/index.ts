@@ -1,12 +1,6 @@
 import {exec} from 'child_process';
 
-const delay = (() => {
-    let timer: any = 0;
-    return (callback: any, ms: number) => {
-        clearTimeout(timer);
-        timer = setTimeout(callback, ms);
-    };
-})();
+const TIMEOUT = 30000;
 
 const getCurrentDayOfYear = () => {
     const now: any = new Date();
@@ -55,21 +49,18 @@ const getAllBranchesRelease = () => new Promise<string[]>((resolve, reject) => {
     const commands = outdatedBranches.map(branchName =>
         `git push origin --delete ${branchName} || echo branch '${branchName}' does not exist`);
 
-    commands.forEach(command => {
-        delay(() => {
+    for (let i = 0; i < commands.length; i++) {
+        setTimeout(() => {
+            const command = commands[i];
             exec(command, (error, stdout, stderr) => {
                 console.log(`Executing: ${command}`);
 
                 if (error) {
                     console.log(`error: ${error.message}`);
-                    return;
-                }
-
-                if (stderr) {
+                } else if (stderr) {
                     console.log(`stderr: ${stderr}`);
-                    return;
                 }
             });
-        }, 30000);
-    });
+        }, TIMEOUT * i);
+    }
 })();
