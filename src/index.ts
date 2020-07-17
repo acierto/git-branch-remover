@@ -1,6 +1,6 @@
 import {exec} from 'child_process';
 
-const TIMEOUT = 5000;
+const TIMEOUT = 1000;
 const RETENTION_IN_DAYS = 7;
 
 const getCurrentDayOfYear = () => {
