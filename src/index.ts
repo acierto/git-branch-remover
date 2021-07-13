@@ -28,6 +28,8 @@ const getBranchDayOfYear = (name: string) => {
 
 const getAllBranchesRelease = () => new Promise<string[]>((resolve, reject) => {
     const command = 'git branch -a | egrep \'remotes/origin/[[:digit:]]{1,3}[.]+[[:digit:]]{1,3}[.]*[[:digit:]]{1,3}-[[:digit:]]{3,4}[.][[:digit:]]{3,4}\'';
+    console.log(`Executing command: ${command}`);
+
     exec(command, (error, stdout, stderr) => {
         if (error) {
             reject(error.message);
