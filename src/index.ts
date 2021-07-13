@@ -13,7 +13,7 @@ const getCurrentDayOfYear = () => {
 const getDaysInMonth = (month: number) => new Date(new Date().getFullYear(), month, 0).getDate();
 
 const getBranchDayOfYear = (name: string) => {
-    const tokens = name.split('/');
+    const tokens = name.split('-');
     const monthAndDay = tokens[tokens.length - 1].split('.')[0];
     if (monthAndDay.length === 3) {
         const month = parseInt(monthAndDay[0], 10);
@@ -45,6 +45,8 @@ const getAllBranchesRelease = () => new Promise<string[]>((resolve, reject) => {
 
 (async () => {
     const branchNames: string[] = await getAllBranchesRelease();
+    console.log(`Found branches matching the regex: ${branchNames}`);
+
     const current = getCurrentDayOfYear();
 
     const outdatedBranches = branchNames.filter(branchName =>
